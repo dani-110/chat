@@ -1,28 +1,35 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Chat App</title>
-    </head>
-    <body>
-        <p>Welcome to the chat app.</p>
-    </body>
-    <script src='/socket.io/socket.io.js'></script>
-    <script  type="text/javascript">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chat App</title>
+</head>
+
+<body>
+    <p>Welcome to the chat app.</p>
+</body>
+<script src='/socket.io/socket.io.js'></script>
+<script type="text/javascript">
     let socket = io()
-    socket.on('connect',()=>{
+    socket.on('connect', () => {
         console.log('connected')
     })
-    socket.emit('createMessage',{
-      from:"David",
-      text:'Hello first msg on socket -- RN'
+    socket.emit('joinRoom',{
+      name:'David',
+      room: "8&9"
     })
-    socket.on('newMsg',(msg)=>{
-      console.log('newMsg',msg)
+    socket.emit('createMessage', {
+        from: "David",
+        text: 'Hello first msg on socket'
     })
-    socket.on('disconnect',()=>{
+    socket.on('newMsg', (msg) => {
+        console.log('newMsg', msg)
+    })
+
+    socket.on('disconnect', () => {
         console.log('disconnected')
     })
-    </script>
+</script>
+
 </html>
